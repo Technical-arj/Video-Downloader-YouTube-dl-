@@ -31,7 +31,7 @@ Remember, script removes 'temp.log' file after you move to the main script.
 :: Multiple-Video Downloader ::
 
 If you want to download multiple videos at a same time then you can use multiple-videos downloader option.
-At 'PROVIDE VIDEO URL' section just press enter to run this option. You can add upto 10 link at a time. Without giving atleast two link you can't go ahead.
+At 'PROVIDE VIDEO URL' section just press enter to run this option. You can add upto 10 link at a time. Without giving atleast two links you can't go ahead.
 
 :: Discussion about URLs ::
 
