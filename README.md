@@ -20,6 +20,7 @@ VIDEO-DOWNLOADER.BAT SCRIPT ELABORATION IN BRIEF
 =================================================
 
 Video-Downloader-YouTube-dl is a batch script to automate and simplify your job with YouTube-dl CLI. While using this, it's not needed to type the whole command line every time you want to download some videos. It has the best options selected by default to provide the best quality videos/audios. Although you can change the options to your preferances.
+
 :: Setting the default video resolution ::
 
 It's a bit hidden thing as there is no option given to choose the prefered video resolution. But you can find a 'temp.log' file after the welcome screen appears inside the same folder where this script has been stored. You can edit your preferance there or you can directly edit the script (line no. 17) to change the default resolution permanently.
