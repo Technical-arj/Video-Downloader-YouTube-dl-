@@ -47,8 +47,8 @@ Either you can give the full path of Download Directory or go with the default w
 :: Command-lines (YTdl options) Explained ::
 
 In single Downloader mode there are two choices - either you can choose the formats by yourself or the best file formats by default (FFMPEG is required).
-WEBM files can't be played with many native media player so FFmpeg converts WEBM into mp4/mp4a file (depending upon your device processors this process may take some time but delivers an enhanced quality).
-Video codec : libx264
+WEBM files can't be played with many native media player so FFmpeg converts WEBM into mp4/mp4a file (depending upon your device processors this process may take some time but delivers a wise-enough quality and saves your disk storage also).
+Video codec : libx265
 Audio codec : aac
 
 Download FFMPEG : https://www.ffmpeg.org/download.html
