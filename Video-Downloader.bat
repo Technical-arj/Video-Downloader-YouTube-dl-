@@ -193,7 +193,7 @@ ECHO/
 ECHO %ESC%[93mWHICH FORMAT DO YOU PREFER: VIDEO OR AUDIO%ESC%[0m
 SET /p FILEFORMAT=PROVIDE HERE(a/v):
 IF "%FILEFORMAT%"=="a" SET FEFT=bestaudio/best/0 -x --audio-format m4a --audio-quality 0
-IF "%FILEFORMAT%"=="v" SET FEFT=bestvideo+bestaudio/best/0/18  --all-subs --embed-subs --no-part --merge-output-format mp4 --postprocessor-args "-vcodec libx264 -preset faster -acodec aac -vf scale=%resolution% -crf 18"
+IF "%FILEFORMAT%"=="v" SET FEFT=best/0/18  --all-subs --embed-subs --no-part --merge-output-format mp4
 IF "%FILEFORMAT%"=="" GOTO @EXIT
 :BULK
 ECHO %ESC%[95mSTARTING DOWNLOAD....%ESC%[0m
@@ -242,12 +242,12 @@ CLS
 ECHO %ESC%[91m==================================================================%ESC%[0m 
 ECHO %ESC%[93mIF THE LINK IS CORRECT THE VIDEO/AUDIO TITLE WILL BE PROVIDED HERE%ESC%[0m
 ECHO %ESC%[91m==================================================================%ESC%[0m 
-YOUTUBE-DL --no-warnings --socket-timeout 120 --retries 5 -e %URL%
+YOUTUBE-DL --no-warnings --socket-timeout 50 --retries 5 -e %URL%
 REM IT WILL SHOW THE VIDEO OR AUDIO TITLE BUT FOR SOME WEBSITES IT MAY NOT WORK
 ECHO/
 ECHO/
 ECHO %ESC%[91m----------VIDEO/AUDIO DURATION-----------------%ESC%[0m
-YOUTUBE-DL --no-warnings --simulate --socket-timeout 120 --retries 5 --get-duration %URL%
+YOUTUBE-DL --no-warnings --simulate --socket-timeout 50 --retries 5 --get-duration %URL%
 ECHO %ESC%[91m-----------------------------------------------%ESC%[0m
 REM YOU WILL GET THE VIDEO OR AUDIO DURATION HERE BUT MAY NOT WORK FOR SOME WEBSITES 
 
@@ -261,7 +261,7 @@ ECHO/
 ECHO %ESC%[93m------------------------------------------------------%ESC%[0m
 ECHO %ESC%[91m(1) SHOW AVAILABLE FORMATS%ESC%[0m
 ECHO %ESC%[97m(2) BEST AUDIO-VISUALS(REQUIRES FFMPEG)%ESC%[0m
-REM FFMPEG NEEDS MORE TIME TO RECODE A VIDEO INTO MP4 AND THIS RECODING IS IMPORTANT BECAUSE SOME NATIVE VIDEO PLAYERS CAN NOT RUN WEBM OR OPUS FILES 
+REM FFMPEG NEEDS MORE TIME TO RECODE A VIDEO INTO MP4 AND THIS RECODING IS IMPORTANT BECAUSE SOME NATIVE VIDEO PLAYERS CAN NOT PLAY SOME SPECIAL FILE FORMAT LIKE WEBM FORMATS, HEVC FORMATS ETC. 
 ECHO %ESC%[93m------------------------------------------------------%ESC%[0m
 SET /p OP=THE FORMAT IS:
 if "%OP%"=="1" GOTO op1
@@ -274,7 +274,7 @@ ECHO %ESC%[93mIF THE LINK IS CORRECT, A CHART OF STREAMS WILL BE AVAILABLE%ESC%[
 ECHO %ESC%[91m============================================================%ESC%[0m
 ECHO/
 TIMEOUT /T 2 /NOBREAK>nul
-YOUTUBE-DL --no-warnings --call-home --socket-timeout 120 --retries 5 -F %URL%
+YOUTUBE-DL --no-warnings --call-home --socket-timeout 50 --retries 5 -F %URL%
 REM READ STREAM DETAILS CAREFULLY 
 :BEGIN2
 ECHO/
@@ -313,7 +313,8 @@ ECHO/
 ECHO %ESC%[93mWHICH FORMAT DO YOU PREFER: VIDEO OR AUDIO-ONLY%ESC%[0m
 SET /p FILEFORMAT=PROVIDE HERE(v/a):
 IF "%FILEFORMAT%"=="a" SET FEFT=bestaudio/best/0 -x --audio-format m4a --audio-quality 256K
-IF "%FILEFORMAT%"=="v" SET FEFT=bestvideo+bestaudio/best/0 --all-subs --embed-subs --no-part --merge-output-format mp4 --postprocessor-args "-vcodec libx264 -preset faster -acodec aac -vf scale=%resolution% -crf 18"
+IF "%FILEFORMAT%"=="v" SET FEFT=bestvideo+bestaudio/best/0 --all-subs --embed-subs --no-part --merge-output-format mp4 --postprocessor-args "-c:v libx265 -preset veryfast -c:a aac -b:a 128k -vf scale=%resolution% -crf 26"
+REM IF VIDEOS BECOME PIXELATED WITH DEFAULT FORMATS THEN PLEASE CHANGE THE CRF FROM 26 TO 20
 IF "%FILEFORMAT%"=="" GOTO @EXIT
 ECHO/
 :extraction
